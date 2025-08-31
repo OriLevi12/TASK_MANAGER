@@ -3,6 +3,7 @@ package com.oriomri.taskmanager.dao;
 import com.oriomri.taskmanager.model.ITask;
 import com.oriomri.taskmanager.model.Task;
 import com.oriomri.taskmanager.model.TaskState;
+import com.oriomri.taskmanager.exceptions.TaskManagerException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -254,7 +255,7 @@ public class TasksDAO implements ITasksDAO {
     
     /**
      * Closes the database connection.
-     * This method should be called when the application shuts down.
+     * This method called when the application shuts down.
      */
     public void closeConnection() {
         if (connection != null) {

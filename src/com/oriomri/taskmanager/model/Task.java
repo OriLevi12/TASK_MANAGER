@@ -134,20 +134,21 @@ public class Task implements ITask {
         this.state = state;
     }
     
-    /**
-     * Accepts a visitor for implementing the Visitor pattern.
-     * This method allows external operations to be performed on the task
-     * without modifying the task class itself.
-     * 
-     * @param visitor the TaskVisitor to accept
-     */
-    @Override
-    public void accept(TaskVisitor visitor) {
-        if (visitor == null) {
-            throw new IllegalArgumentException("Visitor cannot be null");
-        }
-        visitor.visit(this);
-    }
+    // TODO: Implement when Visitor pattern is added
+    // /**
+    //  * Accepts a visitor for implementing the Visitor pattern.
+    //  * This method allows external operations to be performed on the task
+    //  * without modifying the task class itself.
+    //  * 
+    //  * @param visitor the TaskVisitor to accept
+    //  */
+    // @Override
+    // public void accept(TaskVisitor visitor) {
+    //     if (visitor == null) {
+    //         throw new IllegalArgumentException("Visitor cannot be null");
+    //     }
+    //     visitor.visit(this);
+    // }
     
     /**
      * Checks if this task is equal to another object.

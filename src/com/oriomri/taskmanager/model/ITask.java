@@ -38,12 +38,13 @@ public interface ITask {
      */
     TaskState getState();
     
-    /**
-     * Accepts a visitor for implementing the Visitor pattern.
-     * This method allows external operations to be performed on the task
-     * without modifying the task class itself.
-     * 
-     * @param visitor the TaskVisitor to accept
-     */
-    void accept(TaskVisitor visitor);
+    // TODO: Implement when Visitor pattern is added
+    // /**
+    //  * Accepts a visitor for implementing the Visitor pattern.
+    //  * This method allows external operations to be performed on the task
+    //  * without modifying the task class itself.
+    //  * 
+    //  * @param visitor the TaskVisitor to accept
+    //  */
+    // void accept(TaskVisitor visitor);
 }

@@ -3,28 +3,26 @@
 ## Project Overview
 A Java desktop application for managing tasks with persistence in Apache Derby database, implementing multiple design patterns and MVVM architecture.
 
-## Project Status: 🚧 IN PROGRESS
+## Project Status: 🚧 IN PROGRESS (67% Complete)
 
 ---
 
 ## 📋 What's Already Implemented ✅
 
-### Core Interfaces & Classes
-- **`ITask.java`** - Task interface with required methods (getId, getTitle, getDescription, getState, accept)
-- **`ITasksDAO.java`** - Data Access Object interface for database operations
-- **`Task.java`** - Concrete task implementation with validation, State pattern, and Visitor pattern support
-- **`TasksDAO.java`** - Concrete DAO implementation using Singleton pattern with Derby database
-- **`TaskState.java`** - Enum for task states (TO_DO, IN_PROGRESS, COMPLETED) - State pattern
-- **`TaskManagerException.java`** - Custom exception class for error handling
+### Design Patterns (4/6 Completed)
+1. **✅ State Pattern** - `TaskState.java` for task lifecycle (TO_DO, IN_PROGRESS, COMPLETED)
+2. **✅ Singleton Pattern** - `TasksDAO.java` ensures single database connection
+3. **✅ Observer Pattern** - `ITaskObserver.java`, `ITaskSubject.java`, `TaskManager.java` for MVVM notifications
+4. **✅ Strategy Pattern** - `ISortStrategy.java`, concrete strategies, `TaskSorter.java` for sorting algorithms
 
-### Design Patterns Implemented
-1. **✅ State Pattern** - TaskState enum for task lifecycle
-2. **✅ Singleton Pattern** - TasksDAO ensures single database connection
-
+### Core Architecture
+- **✅ Model Layer** - `ITask.java`, `Task.java`, `TaskState.java` with validation and State pattern
+- **✅ DAO Layer** - `ITasksDAO.java`, `TasksDAO.java` with Singleton pattern and Derby database
+- **✅ ViewModel Layer** - `TaskManager.java` with Observer pattern for MVVM
+- **✅ Exception Handling** - `TaskManagerException.java` for proper error management
 
 ### Database Layer
-- **Derby embedded database** connection established
-- **Automatic table creation** (tasks table with id, title, description, state columns)
+- **Derby embedded database** with automatic table creation
 - **Full CRUD operations** (Create, Read, Update, Delete tasks)
 - **Proper exception handling** with custom TaskManagerException
 
@@ -32,158 +30,92 @@ A Java desktop application for managing tasks with persistence in Apache Derby d
 
 ## 🚧 What Still Needs to Be Implemented
 
-### Required Design Patterns (6 Total)
+### Required Design Patterns (2/6 Remaining)
 - [ ] **Combinator Pattern** - For flexible task filtering (MANDATORY)
 - [ ] **Visitor Pattern** - For report generation with Records & Pattern Matching (MANDATORY)
-- [ ] **State Pattern** - For task lifecycle management (✅ COMPLETED)
-- [ ] **Singleton Pattern** - For DAO implementation (✅ COMPLETED)
-- [ ] **Observer Pattern** - For MVVM (UI updates when model changes)
-- [ ] **Strategy Pattern** - For sorting and task prioritization
 
 ### Architecture Components
-- [ ] **MVVM Structure** - Model-View-ViewModel separation
 - [ ] **Swing GUI** - User interface with Swing components
-- [ ] **Observer System** - Notification mechanism for UI updates
 - [ ] **Filtering System** - Combinator pattern implementation
 - [ ] **Reporting System** - Visitor pattern with Java Records
 
-### Additional Interfaces to Create
-- [ ] **Observer interfaces** (ITaskObserver, ITaskSubject)
-- [ ] **Strategy interfaces** (ISortStrategy, different sorting implementations)
-- [ ] **Filter interfaces** (ITaskFilter, IFilterCombinator)
-- [ ] **Visitor interfaces** (TaskVisitor, concrete visitors)
-
 ---
 
-## 🏗️ Project Structure (Current)
+## 🏗️ Project Structure
 ```
 src/com/oriomri/taskmanager/
-├── ITask.java              ← Task interface
-├── ITasksDAO.java          ← DAO interface  
-├── Task.java               ← Task implementation
-├── TasksDAO.java           ← DAO implementation (Singleton)
-├── TaskState.java          ← Task states enum
-└── TaskManagerException.java ← Custom exception
+├── model/
+│   ├── ITask.java              ← Task interface
+│   ├── Task.java               ← Task implementation with State pattern
+│   └── TaskState.java          ← Task states enum
+├── dao/
+│   ├── ITasksDAO.java          ← DAO interface  
+│   └── TasksDAO.java           ← DAO implementation (Singleton)
+├── exceptions/
+│   └── TaskManagerException.java ← Custom exception
+├── observer/
+│   ├── ITaskObserver.java      ← Observer interface
+│   └── ITaskSubject.java       ← Subject interface
+├── viewmodel/
+│   └── TaskManager.java        ← Main manager with Observer pattern
+└── sortingstrategy/
+    ├── ISortStrategy.java      ← Strategy interface
+    ├── SortByIdStrategy.java   ← Sort by ID strategy
+    ├── SortByTitleStrategy.java ← Sort by title strategy
+    ├── SortByStateStrategy.java ← Sort by state strategy
+    └── TaskSorter.java         ← Context class using Strategy pattern
 ```
-
-## 🎯 Recommended Next Steps
-
-### Phase 1: Complete Core Patterns
-1. **Create Observer interfaces** for MVVM
-2. **Implement Strategy pattern** for sorting
-3. **Build Combinator pattern** for filtering
-
-### Phase 2: MVVM Architecture
-1. **Create ViewModel** with Observer pattern
-2. **Implement Swing GUI** (View)
-3. **Connect Model-View-ViewModel**
-
-### Phase 3: Advanced Features
-1. **Implement Visitor pattern** for reports
-2. **Add filtering capabilities**
-3. **Create sorting strategies**
 
 ---
 
-## 🛠️ How to Work with the Project
+## 🎯 Next Steps
+
+### Phase 1: Complete Core Patterns ✅ COMPLETED
+- **✅ Observer interfaces** for MVVM
+- **✅ Strategy pattern** for sorting
+- **Build Combinator pattern** for filtering (NEXT)
+
+### Phase 2: MVVM Architecture (IN PROGRESS)
+- **✅ Create ViewModel** with Observer pattern
+- **Implement Swing GUI** (View)
+- **Connect Model-View-ViewModel**
+
+### Phase 3: Advanced Features
+- **Implement Visitor pattern** for reports
+- **Add filtering capabilities** (Combinator pattern)
+
+---
+
+## 🛠️ Installation & Setup
 
 ### Prerequisites
 - **Java 24+** (as required by lecturer)
 - **IntelliJ IDEA** (Community or Ultimate)
-- **Apache Derby 10.17.1.0** - Compatible with Java 21+ (download from [Apache Derby](https://db.apache.org/derby/derby_downloads.html))
+- **Apache Derby 10.17.1.0** - Compatible with Java 21+ ([Download here](https://db.apache.org/derby/derby_downloads.html))
 
-### Installation & Setup
-
-#### Step 1: Import Project
-1. **Open IntelliJ IDEA**
-2. **File → Open** (or **Import Project**)
-3. **Select the project folder** (`Task_manager_app`)
-4. **Choose "Open as Project"**
-
-#### Step 2: Configure JDK
-1. **File → Project Structure** (or **Ctrl+Alt+Shift+S**)
-2. **Project Settings → Project**
-3. **Project SDK**: Select **Java 24+**
-4. **Project language level**: Select **24** or higher
-5. **Click OK**
-
-#### Step 3: Add Derby Libraries
-**First, download Derby libraries:**
-1. **Go to**: [Apache Derby Downloads](https://db.apache.org/derby/derby_downloads.html)
-2. **Download**: **10.17.1.0 (November 10, 2023)** - For Java 21 and Higher
-3. **Extract** the downloaded ZIP file
-4. **Copy these JAR files** to your project's `lib/` folder:(if there is no lib folder make one)
-   - `derby.jar`
-   - `derbyshared.jar` 
-   - `derbytools.jar`
-
-**Then add to IntelliJ:**
-1. **File → Project Structure** (or **Ctrl+Alt+Shift+S**)
-2. **Project Settings → Libraries**
-3. **Click + → Java**
-4. **Navigate to project folder → lib folder**
-5. **Select ALL JAR files** from the lib folder
-6. **Click OK**
-7. **Apply → OK**
-
-#### Step 4: Test Setup
-1. **Run Main.java** to test database connection
-2. **Check console output** for "Connected to Derby!" message
-
-### Running the Project
-1. **Ensure JDK 24+** is configured
-2. **Verify Derby libraries** are added
-3. **Run Main.java** - Test database connection
+### Setup Steps
+1. **Import Project** - Open `Task_manager_app` folder in IntelliJ
+2. **Configure JDK** - Set Project SDK to Java 24+ in Project Structure
+3. **Add Derby Libraries**:
+   - Download Derby 10.17.1.0 and extract
+   - Copy `derby.jar`, `derbyshared.jar`, `derbytools.jar` to project's `lib/` folder
+   - In IntelliJ: Project Structure → Libraries → + → Java → Select all JAR files
+4. **Test Setup** - Run `Main.java` to verify database connection
 
 ### Database
 - **Location**: `mydb/` folder (embedded Derby)
 - **Connection**: Automatically established by TasksDAO
 - **Table**: `tasks` created automatically on first run
 
-### Adding New Features
-1. **Follow Java coding standards** from Moodle
-2. **Use existing patterns** as examples
-3. **Maintain separation of concerns**
-4. **Add proper Javadoc** for all public methods
-
----
-
-## 📚 Design Pattern References
-
-### All 6 Design Patterns
-
-#### ✅ Already Implemented (2/6)
-- **State Pattern**: `TaskState.java` - Task lifecycle management
-- **Singleton Pattern**: `TasksDAO.java` - Single database connection
-
-#### 🚧 Partially Ready (1/6)
-- **Visitor Pattern**: `Task.accept()` method ready, needs concrete visitors
-
-#### ❌ Still Need to Implement (3/6)
-- **Observer Pattern**: UI updates when data changes (MVVM)
-- **Strategy Pattern**: Different sorting algorithms
-- **Combinator Pattern**: Flexible filtering system (MANDATORY)
-
----
-
-## ⚠️ Important Notes
-
-### Coding Standards (Must Follow)
-- **In the requirements file of the project that is in the moodle there is also link to website : javapoints
-- ** you should follow these instructions
-
-### Project Requirements
-- **Check Moodle for requirements
-
 ---
 
 ## 🤝 Partner Collaboration
 
 ### What You Can Work On
-- **Observer pattern** implementation
-- **Strategy pattern** for sorting
-- **Swing GUI** components
-- **MVVM architecture** setup
+- **✅ Observer pattern** implementation (COMPLETED)
+- **✅ Strategy pattern** for sorting (COMPLETED)
+- **Swing GUI** components (NEXT PRIORITY)
+- **✅ MVVM architecture** setup (ViewModel completed)
 - **Unit tests** for existing code
 
 ### Communication
@@ -194,13 +126,12 @@ src/com/oriomri/taskmanager/
 
 ---
 
-## 📞 Getting Help
+## ⚠️ Important Notes
 
-### For Questions
-- **Check lecturer's forum** first (as required)
-- **Review existing code** for examples
-- **Follow Java coding standards** strictly
-- **Test incrementally** as you build
+### Coding Standards
+- **Follow Java coding standards** from Moodle
+- **Check project requirements** in Moodle
+- **Use existing patterns** as examples for new implementations
 
 ### Project Deadline
 - **Check Moodle** for exact deadline
@@ -209,7 +140,6 @@ src/com/oriomri/taskmanager/
 
 ---
 
-**Last Updated**: [Current Date]
-**Status**: Core classes implemented, ready for MVVM and GUI development
-**Next Milestone**: Complete Observer and Strategy patterns
-# TASK_MANAGER
+**Last Updated**: December 19, 2024  
+**Status**: 4/6 design patterns completed, MVVM ViewModel ready, ready for GUI development  
+**Next Milestone**: Implement Swing GUI and integrate with existing patterns

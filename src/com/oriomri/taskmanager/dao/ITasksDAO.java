@@ -1,6 +1,7 @@
 package com.oriomri.taskmanager.dao;
 
 import com.oriomri.taskmanager.model.ITask;
+import com.oriomri.taskmanager.exceptions.TaskManagerException;
 
 /**
  * Interface for Data Access Object operations on tasks.
